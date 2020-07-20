@@ -34,18 +34,14 @@ namespace Final_Assignment_Q1
             }
         }
 
-        //----methods----
+        //-----methods-----
         //constructors:
         public ASystem(string name, DateTime established)
         { SName = name; Established = established; }
-
         public ASystem(string name)
         { SName = name; established = DateTime.Now; }
             //
-
-        // string with information about system usage
-        public abstract string systemPurpose();
-
+        public abstract string systemPurpose(); // string with information about system usage
         public override string ToString()
         { return sname + " exist since " + established.ToShortDateString(); }
     }
