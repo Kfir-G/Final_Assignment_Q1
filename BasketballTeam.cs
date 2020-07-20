@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Final_Assignment_Q1
 {
-    class BasketballTeam : ASystem
+    class BasketballTeam : ASystem, IComparable 
     {
         //-----data fields----
         protected int maxPlayers;
@@ -51,9 +51,23 @@ namespace Final_Assignment_Q1
         }
             //
         public override string systemPurpose()
-         {
-            return "ab";
-         }
+        {
+           return base.ToString()+ "max player:"+ maxPlayers+"active players:"+activePlayers;
+        }
 
+        //-----interface----
+        public int CompareTo (object obj) //sort by number of active players
+        {
+            if (!(obj is BasketballTeam))
+                throw new Exception("Object is not a basketball team, Can not compare !");
+
+            BasketballTeam basketballTeam = (BasketballTeam)obj;
+            if (activePlayers == basketballTeam.activePlayers)
+                return 0;
+            if (activePlayers < basketballTeam.activePlayers)
+                return -1;
+            else
+                return 1;
+        }
     }
 }

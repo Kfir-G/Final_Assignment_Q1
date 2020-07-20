@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Final_Assignment_Q1
 {
-    abstract class ASystem // Sport Group
+    abstract class ASystem  // Sport Group
     {
         //-----data fields---
         string sname;  // name of the sport group
