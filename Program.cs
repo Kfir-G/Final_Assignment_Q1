@@ -6,7 +6,7 @@ namespace Final_Assignment_Q1
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+           
         }
     }
 }
