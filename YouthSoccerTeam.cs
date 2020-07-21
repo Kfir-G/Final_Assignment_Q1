@@ -44,7 +44,7 @@ namespace Final_Assignment_Q1
             //
         public override string systemPurpose()
         {
-            return base.ToString() + "under age " + underAge;
+            return base.ToString() + " under age " + underAge;
         }
 
         //-----interface----

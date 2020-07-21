@@ -9,8 +9,6 @@ namespace Final_Assignment_Q1
         //----data fields----
         public BasketballTeam[] basketballTeams;
         public SoccerTeam[] soccerTeams;
-        public YouthSoccerTeam[] youthSoccerTeams;
-        public Stadium[] stadiums;
 
         //-----properties-----
 
@@ -21,99 +19,103 @@ namespace Final_Assignment_Q1
             // 10 is default size
             basketballTeams = new BasketballTeam[10];
             soccerTeams = new SoccerTeam[10];
-            youthSoccerTeams = new YouthSoccerTeam[10];
-            stadiums = new Stadium[10];
         }
         public Service (int size)
         {
             basketballTeams = new BasketballTeam[size];
             soccerTeams = new SoccerTeam[size];
-            youthSoccerTeams = new YouthSoccerTeam[size];
-            stadiums = new Stadium[size];
         }
-        public Service(int sizeBasketballTeams, int sizeSoccerTeams, int sizeStadiums)
+        public Service(int sizeBasketballTeams, int sizeSoccerTeams)
         {
             basketballTeams = new BasketballTeam[sizeBasketballTeams];
             soccerTeams = new SoccerTeam[sizeSoccerTeams];
-            youthSoccerTeams = new YouthSoccerTeam[sizeSoccerTeams];
-            stadiums = new Stadium[sizeStadiums];
         }
             //
         //prints:
         public void printBasketBallTeams(BasketballTeam[] basketballTeams)
         {
             for (int i = 0; i < basketballTeams.Length; i++)
-                Console.WriteLine("{0}", basketballTeams[i].systemPurpose() ) ;
+            {
+                if (basketballTeams[i] != null)
+                    Console.WriteLine("{0}", basketballTeams[i].systemPurpose());
+            }
         }
         public void printSoccerTeams(SoccerTeam[] SoccerTeams)
         {
             for (int i = 0; i < SoccerTeams.Length; i++)
-                Console.WriteLine("{0}", SoccerTeams[i].systemPurpose());
-        }
-        public void printStadiums(Stadium[] stadiums)
-        {
-            for (int i = 0; i < stadiums.Length; i++)
-                Console.WriteLine("{0}", stadiums[i].ToString());
-        }
-        public void printYouthSoccerTeams(YouthSoccerTeam [] youthSoccerTeams)
-        {
-            for (int i=0; i< youthSoccerTeams.Length; i++)
             {
-                if(youthSoccerTeams[i].UnderAge != 0)
-                    Console.WriteLine("{0}", youthSoccerTeams[i].systemPurpose());
+                if (SoccerTeams[i] != null)
+                    Console.WriteLine("{0}",SoccerTeams[i].systemPurpose() );
+            }
+        }
+        public void printYouthSoccerTeams(SoccerTeam [] soccerTeams)
+        {
+            for (int i=0; i< soccerTeams.Length; i++)
+            {
+                if (soccerTeams[i] != null)
+                {
+                    if( soccerTeams[i] is  YouthSoccerTeam)
+                        Console.WriteLine("{0}", ((YouthSoccerTeam)soccerTeams[i]).systemPurpose());
+                }
             }
         }
         public void printService(Service service)
         {
             printBasketBallTeams(service.basketballTeams);
             printSoccerTeams(service.soccerTeams);
-            printYouthSoccerTeams(service.youthSoccerTeams);
-            printStadiums(service.stadiums);
+            printYouthSoccerTeams(service.soccerTeams);
         }
             //
         // Add functions:
-        public void addStadium(int idx)
-        {
-            Console.WriteLine("Enter stadium name");
-            string stadiumName = Console.ReadLine();
-            Console.WriteLine("Enter the number of the seats in the stadium");
-            int seats = int.Parse(Console.ReadLine());
-            stadiums[idx] = new Stadium(stadiumName, seats);
-        }
         public void addBasketballTeam(int idx)
         {
-            Console.WriteLine("Enter the number of max players");
-            int maxPlayers = int.Parse(Console.ReadLine());
-            Console.WriteLine("Enter the number of active player");
-            int activePlayer = int.Parse(Console.ReadLine());
-            addStadium(idx);
-            Console.WriteLine("Enter the name of the group");
-            string teamName = Console.ReadLine();
-            Console.WriteLine("Enter the year of established after that the month and then the day");
-            int year = int.Parse(Console.ReadLine());
-            int month = int.Parse(Console.ReadLine());
-            int day = int.Parse(Console.ReadLine());
-            DateTime established = new DateTime(year, month, day);
-            basketballTeams[idx] = new BasketballTeam(teamName, established, maxPlayers, activePlayer, stadiums[idx]);
+            try
+            {
+                Console.WriteLine("Enter the number of max players");
+                int maxPlayers = int.Parse(Console.ReadLine());
+                Console.WriteLine("Enter the number of active player");
+                int activePlayer = int.Parse(Console.ReadLine());
+                Console.WriteLine("Enter the name of the group");
+                string teamName = Console.ReadLine();
+                Console.WriteLine("Enter the year of established after that the month and then the day");
+                int year = int.Parse(Console.ReadLine());
+                int month = int.Parse(Console.ReadLine());
+                int day = int.Parse(Console.ReadLine());
+                DateTime established = new DateTime(year, month, day);
+                Console.WriteLine("Enter the name of the stadium where they play");
+                string stadiumName = Console.ReadLine()
+                basketballTeams[idx] = new BasketballTeam(teamName, established, maxPlayers, activePlayer, stadiums[idx]);
+            }
+            catch(Exception e1)
+            {
+                Console.WriteLine("Worng Input " + e1.Message);
+            }
         }
         public void addSoccerTeam(int idx)
         {
-            Console.WriteLine("Enter the name of the couch");
-            string couchName = Console.ReadLine();
-            Console.WriteLine("Enter the sponsership on the jersey");
-            string sponsership = Console.ReadLine();
-            Console.WriteLine("Enter the name of the group");
-            string teamName = Console.ReadLine();
-            Console.WriteLine("Enter the year of established after that the month and then the day");
-            int year = int.Parse(Console.ReadLine());
-            int month = int.Parse(Console.ReadLine());
-            int day = int.Parse(Console.ReadLine());
-            DateTime established = new DateTime(year, month, day);
-            soccerTeams[idx] = new SoccerTeam(teamName, established, couchName, sponsership);
-            Console.WriteLine("The team have a youth team? true/flase");
-            bool youthTeam = bool.Parse(Console.ReadLine());
-            if (youthTeam)
-                addYouthSoccerTeam(idx, couchName , sponsership,teamName, established);
+            try
+            {
+                Console.WriteLine("Enter the name of the couch");
+                string couchName = Console.ReadLine();
+                Console.WriteLine("Enter the sponsership on the jersey");
+                string sponsership = Console.ReadLine();
+                Console.WriteLine("Enter the name of the group");
+                string teamName = Console.ReadLine();
+                Console.WriteLine("Enter the year of established after that the month and then the day");
+                int year = int.Parse(Console.ReadLine());
+                int month = int.Parse(Console.ReadLine());
+                int day = int.Parse(Console.ReadLine());
+                DateTime established = new DateTime(year, month, day);
+                soccerTeams[idx] = new SoccerTeam(teamName, established, couchName, sponsership);
+                Console.WriteLine("The team have a youth team? true/flase");
+                bool youthTeam = bool.Parse(Console.ReadLine());
+                if (youthTeam)
+                    addYouthSoccerTeam(idx, couchName, sponsership, teamName, established);
+            }
+            catch( Exception e2)
+            {
+                Console.WriteLine("Worng input "+ e2.Message);
+            }
         }
         public void addYouthSoccerTeam(int idx, string couchName, string sponsership, string teamName, DateTime established)
         {
@@ -210,33 +212,5 @@ namespace Final_Assignment_Q1
             Console.WriteLine("Didn't find");
             return; //didnt find
         }
-        /*public int searchYouthSoccerTeam(string name)
-        {
-            for(int i=0; i<youthSoccerTeams.Length; i++)
-            {
-                if (String.Compare(name, youthSoccerTeams[i].SName) == 0)
-                    return i;
-            }
-            return -1; //didnt find
-        }*/
-        /*public void searchTeams(string name)
-        {
-            int idx = searchBasketballTeam(name);
-            if (idx != -1)
-            {
-                Console.WriteLine("Found !");
-                basketballTeams[idx].systemPurpose();
-                return;
-            }
-            idx = searchSoccerTeam(name);
-            if (idx != -1)
-            {
-                Console.WriteLine("Found !");
-                soccerTeams[idx].systemPurpose();
-                return;
-            }
-            Console.WriteLine("Did not find !");
-            return;
-        }*/
     }
 }
