@@ -67,59 +67,28 @@ namespace Final_Assignment_Q1
         }
             //
         // Add functions:
-        public void addBasketballTeam(int idx)
+        public void addBasketballTeam(int idx, string name, DateTime dateTime, int maxPlayers, int activePlayers, Stadium stadium)
         {
             try
             {
-                Console.WriteLine("Enter the number of max players");
-                int maxPlayers = int.Parse(Console.ReadLine());
-                Console.WriteLine("Enter the number of active player");
-                int activePlayer = int.Parse(Console.ReadLine());
-                Console.WriteLine("Enter the name of the group");
-                string teamName = Console.ReadLine();
-                Console.WriteLine("Enter the year of established after that the month and then the day");
-                int year = int.Parse(Console.ReadLine());
-                int month = int.Parse(Console.ReadLine());
-                int day = int.Parse(Console.ReadLine());
-                DateTime established = new DateTime(year, month, day);
-                Console.WriteLine("Enter the name of the stadium where they play");
-                string stadiumName = Console.ReadLine();
-                Console.WriteLine("Enter the number of the seats in the stadium");
-                int seatStadium =int.Parse(Console.ReadLine());
-                Stadium stadiumNew = new Stadium(stadiumName, seatStadium);
-                basketballTeams[idx] = new BasketballTeam(teamName, established, maxPlayers, activePlayer, stadiumNew);
+                basketballTeams[idx] = new BasketballTeam(name, dateTime, maxPlayers, activePlayers, stadium;
             }
             catch(Exception e1)
             {
                 Console.WriteLine("Worng Input " + e1.Message);
             }
         }
-        public void addSoccerTeam(int idx)
+        public void addSoccerTeam(int idx, string nameTeam, DateTime dateTime, string couchName, string sponsership, bool youthTeam, int underAge)
         {
             try
             {
-                Console.WriteLine("Enter the name of the couch");
-                string couchName = Console.ReadLine();
-                Console.WriteLine("Enter the sponsership on the jersey");
-                string sponsership = Console.ReadLine();
-                Console.WriteLine("Enter the name of the group");
-                string teamName = Console.ReadLine();
-                Console.WriteLine("Enter the year of established after that the month and then the day");
-                int year = int.Parse(Console.ReadLine());
-                int month = int.Parse(Console.ReadLine());
-                int day = int.Parse(Console.ReadLine());
-                DateTime established = new DateTime(year, month, day);
-                Console.WriteLine("The team is youth team? true/flase");
-                bool youthTeam = bool.Parse(Console.ReadLine());
                 if (youthTeam)
                 {
-                    Console.WriteLine("Enter the under age (limit)");
-                    int underAge = int.Parse(Console.ReadLine());
-                    soccerTeams[idx] = new YouthSoccerTeam(teamName, established, couchName, sponsership, underAge);
+                    soccerTeams[idx] = new YouthSoccerTeam(nameTeam, dateTime, couchName, sponsership, underAge);
                 }
                 else
                 {
-                    soccerTeams[idx] = new SoccerTeam(teamName, established, couchName, sponsership);
+                    soccerTeams[idx] = new SoccerTeam(nameTeam, dateTime, couchName, sponsership);
                 }
             }
             catch( Exception e2)

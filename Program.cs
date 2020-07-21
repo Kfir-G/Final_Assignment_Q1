@@ -6,19 +6,26 @@ namespace Final_Assignment_Q1
     {
         static void Main(string[] args)
         {
-            int idxBasketBallTeam = 0, idxSoccerTeam = 0, choiceTemp, size = 1;
-            bool temp = true, checkSize = false;
+            int size = 10;
+            int idxBasketBallTeam = 0, idxSoccerTeam = 0, choiceTemp;
+            bool temp = true;
 
-            while (!checkSize)
-            {
-                Console.WriteLine("Enter the amount of the teams");
-                size = int.Parse(Console.ReadLine());
-                if (size > 0)
-                    checkSize = true;
-                else
-                    Console.WriteLine("Worng input try again");
-            }
             Service service = new Service(size);
+
+            Stadium stadium = new Stadium("Santiago", 80000);
+            DateTime dateTime = new DateTime(1900, 1, 1);
+            int activePlayers = 10;
+            int maxPlayer = 20;
+            service.addBasketballTeam(idxBasketBallTeam, "Real Madrid", dateTime, maxPlayer, activePlayers, stadium);
+            idxBasketBallTeam++;
+
+            DateTime dateTime2 = new DateTime(1920, 2, 2);
+            service.addSoccerTeam(idxBasketBallTeam, "Napoli", dateTime2, "Avi", "Nike", false, 45);
+            idxSoccerTeam++;
+
+            DateTime dateTime3 = new DateTime(1930, 3, 3);
+            service.addSoccerTeam(idxBasketBallTeam, "Dortmund", dateTime3, "Klopp", "Puma",true, 18);
+            idxSoccerTeam++;
 
             while (temp)
             {
