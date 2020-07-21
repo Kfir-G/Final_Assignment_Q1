@@ -67,7 +67,6 @@ namespace Final_Assignment_Q1
             if (result > 0) //staiumName < Stadium.stadiumName
                 return -1;
             return 0;  //stadiumName == Stadium.stadiumName
-
         }
     }
 }

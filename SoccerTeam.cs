@@ -67,7 +67,6 @@ namespace Final_Assignment_Q1
             if (result > 0) //coachName < SoccerTeam.coachName
                 return -1;
             return 0;  //coachName == SoccerTeam.coachName
-
         }
     }
 }

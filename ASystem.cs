@@ -39,7 +39,7 @@ namespace Final_Assignment_Q1
         public ASystem(string name, DateTime established)
         { SName = name; Established = established; }
         public ASystem(string name)
-        { SName = name; established = DateTime.Now; }
+        { SName = name; established = DateTime.Now;/*default value */ }
             //
         public abstract string systemPurpose(); // string with information about system usage
         public override string ToString()
