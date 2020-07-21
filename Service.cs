@@ -53,7 +53,7 @@ namespace Final_Assignment_Q1
         public void printStadiums(Stadium[] stadiums)
         {
             for (int i = 0; i < stadiums.Length; i++)
-                Console.WriteLine("{0}", stadiums[i].systemPurpose());
+                Console.WriteLine("{0}", stadiums[i].ToString());
         }
         public void printYouthSoccerTeams(YouthSoccerTeam [] youthSoccerTeams)
         {
@@ -78,14 +78,7 @@ namespace Final_Assignment_Q1
             string stadiumName = Console.ReadLine();
             Console.WriteLine("Enter the number of the seats in the stadium");
             int seats = int.Parse(Console.ReadLine());
-            Console.WriteLine("Enter the name of the group");
-            string teamName = Console.ReadLine();
-            Console.WriteLine("Enter the year of established after that the month and then the day");
-            int year = int.Parse(Console.ReadLine());
-            int month = int.Parse(Console.ReadLine());
-            int day = int.Parse(Console.ReadLine());
-            DateTime established = new DateTime(year, month, day);
-            stadiums[idx] = new Stadium(teamName, established, stadiumName, seats);
+            stadiums[idx] = new Stadium(stadiumName, seats);
         }
         public void addBasketballTeam(int idx)
         {
@@ -175,34 +168,49 @@ namespace Final_Assignment_Q1
         }
             //
         //search:
-        public int searchBasketballTeam(string name) //search by name
+        public void searchBasketballTeam(string name) //search by name
         {
             for(int i =0; i<basketballTeams.Length; i++)
             {
                 if (String.Compare(name, basketballTeams[i].SName) == 0)
-                    return i;
+                {
+                    Console.WriteLine("Found! index {0}", i);
+                    basketballTeams[i].systemPurpose();
+                    return;
+                }
             }
-            return -1; //didnt find
+            Console.WriteLine("Didn't find!");
+            return ; //didnt find
         }
-        public int searchStadium(string stadiumName)
+        public void searchStadium(string stadiumName)
         {
             for(int i=0; i<stadiums.Length; i++)
             {
-                if (String.Compare(stadiumName, stadiums[i].SName) == 0)
-                    return i;
+                if (String.Compare(stadiumName, stadiums[i].StadiumName) == 0)
+                {
+                    Console.WriteLine("Found! index {0}", i);
+                    Console.WriteLine("{0}" ,stadiums[i].ToString());
+                    return;
+                }
             }
-            return -1; //didnt find
+            Console.WriteLine("Did not find!");
+            return; //didnt find
         }
-        public int searchSoccerTeam(string name)
+        public void searchSoccerTeam(string name)
         {
             for(int i=0; i<soccerTeams.Length; i++)
             {
                 if (String.Compare(name, soccerTeams[i].SName) == 0)
-                    return i;
+                {
+                    Console.WriteLine("Found! index {0}", i);
+                    soccerTeams[i].systemPurpose();
+                    return;
+                }
             }
-            return -1; //didnt find
+            Console.WriteLine("Didn't find");
+            return; //didnt find
         }
-        public int searchYouthSoccerTeam(string name)
+        /*public int searchYouthSoccerTeam(string name)
         {
             for(int i=0; i<youthSoccerTeams.Length; i++)
             {
@@ -210,6 +218,25 @@ namespace Final_Assignment_Q1
                     return i;
             }
             return -1; //didnt find
-        }
+        }*/
+        /*public void searchTeams(string name)
+        {
+            int idx = searchBasketballTeam(name);
+            if (idx != -1)
+            {
+                Console.WriteLine("Found !");
+                basketballTeams[idx].systemPurpose();
+                return;
+            }
+            idx = searchSoccerTeam(name);
+            if (idx != -1)
+            {
+                Console.WriteLine("Found !");
+                soccerTeams[idx].systemPurpose();
+                return;
+            }
+            Console.WriteLine("Did not find !");
+            return;
+        }*/
     }
 }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Final_Assignment_Q1
 {
-    class Stadium: ASystem, IComparable
+    class Stadium: IComparable
     {
         //-----data fields-----
         protected string stadiumName;
@@ -34,25 +34,25 @@ namespace Final_Assignment_Q1
 
         //-----methods-----
         //constructors:
-        public Stadium(string name, DateTime established, string stadiumName, int seats): base(name, established)
+        public Stadium( string stadiumName, int seats)
         {
             StadiumName = stadiumName;
             Seats = seats;
         }
-        public Stadium(string name, DateTime established) : base(name, established)
+        public Stadium() 
         {
             StadiumName = "Not named yet"; //default value
             Seats = 0; // default value
         }
-        public Stadium(string name, DateTime established, string stadiumName) : base(name, established)
+        public Stadium(string stadiumName) 
         {
             StadiumName = stadiumName;
             Seats = 0; // default value
         }
             //
-        public override string systemPurpose()
+        public override string ToString()
         {
-            return base.ToString() + "the name of the stadium " + stadiumName + "number of seats" + seats;
+            return "The name of the stadium " + stadiumName + "number of seats" + seats;
         }
 
         //-----interface-----
