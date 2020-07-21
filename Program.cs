@@ -7,44 +7,50 @@ namespace Final_Assignment_Q1
         static void Main(string[] args)
         {
             int idxBasketBallTeam = 0, idxSoccerTeam = 0, choiceTemp;
+            bool temp = true;
 
             Console.WriteLine("Enter the amount of the teams");
             int size = int.Parse(Console.ReadLine());
             Service service = new Service(size);
-            
-            Menu();
-            int choice = int.Parse(Console.ReadLine());
-            switch(choice)
-            {
-                case 1:
-                    CallForPrint(service);
-                    break;
-                case 2:
-                    Searching(service);
-                    break;
-                case 3:
-                    Delete(service);
-                    break;
-                case 4:
-                    Console.WriteLine("Enter 7 to add a Basketball team\t8 to add a Soccer team");
-                    choiceTemp = int.Parse(Console.ReadLine());
-                    if (choiceTemp == 7)
-                    {
-                        service.addBasketballTeam(idxBasketBallTeam);
-                        idxBasketBallTeam++;
-                    }
-                    if (choiceTemp == 8)
-                    {
-                        service.addSoccerTeam(idxSoccerTeam);
-                        idxSoccerTeam++;
-                    }
-                    break;
-                default:
-                    Console.WriteLine("Worng input");
-                    break;
-                    
-            }
 
+            while (temp)
+            {
+                Menu();
+                int choice = int.Parse(Console.ReadLine());
+                switch (choice)
+                {
+                    case 1:
+                        CallForPrint(service);
+                        break;
+                    case 2:
+                        Searching(service);
+                        break;
+                    case 3:
+                        Delete(service);
+                        break;
+                    case 4:
+                        Console.WriteLine("Enter 7 to add a Basketball team\t8 to add a Soccer team");
+                        choiceTemp = int.Parse(Console.ReadLine());
+                        if (choiceTemp == 7)
+                        {
+                            service.addBasketballTeam(idxBasketBallTeam);
+                            idxBasketBallTeam++;
+                        }
+                        if (choiceTemp == 8)
+                        {
+                            service.addSoccerTeam(idxSoccerTeam);
+                            idxSoccerTeam++;
+                        }
+                        break;
+                    case 5:
+                        Console.WriteLine("Bye Bye....");
+                        temp = false;
+                        break;
+                    default:
+                        Console.WriteLine("Worng input");
+                        break;
+                }
+            }
         }
         public static void Menu()
         {
@@ -53,6 +59,7 @@ namespace Final_Assignment_Q1
             Console.WriteLine("2\tto Search");
             Console.WriteLine("3\tto Delete");
             Console.WriteLine("4\tto Add item");
+            Console.WriteLine("5\tto Exit");
         }
         public static void Delete(Service service)
         {
