@@ -7,8 +7,8 @@ namespace Final_Assignment_Q1
     class Service
     {
         //----data fields----
-        string teamName;
-        DateTime established;
+        public string teamName;
+        public DateTime established;
         public BasketballTeam[] basketballTeams;
         public SoccerTeam[] soccerTeams;
         public YouthSoccerTeam[] youthSoccerTeams;
@@ -162,6 +162,17 @@ namespace Final_Assignment_Q1
             for (int i = idx; i < youthSoccerTeams.Length - 1; i++)
                 youthSoccerTeams[i] = youthSoccerTeams[i + 1];
             youthSoccerTeams[youthSoccerTeams.Length - 1] = null;
+        }
+            //
+        //search:
+        public int searchBasketballTeam(string name) //search by name
+        {
+            for(int i =0; i<basketballTeams.Length; i++)
+            {
+                if (String.Compare(name, basketballTeams[i].SName) == 0)
+                    return i;
+            }
+            return -1; //didnt found
         }
     }
 }

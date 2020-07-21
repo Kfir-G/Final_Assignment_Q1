@@ -70,18 +70,17 @@ namespace Final_Assignment_Q1
         }
 
         //-----interface----
-        public int CompareTo (object obj) //sort by number of active players
+        public int CompareTo (object obj) //sort by basketball name group
         {
             if (!(obj is BasketballTeam))
                 throw new Exception("Object is not a basketball team, Can not compare !");
 
-            BasketballTeam basketballTeam = (BasketballTeam)obj;
-            if (activePlayers == basketballTeam.activePlayers)
-                return 0;
-            if (activePlayers < basketballTeam.activePlayers)
-                return -1;
-            else
+            int result = String.Compare(((BasketballTeam)obj).SName, SName);
+            if (result < 0) // Sname > basketballTeam.Sname
                 return 1;
+            if (result > 0) //Sname < basketballTeam.Sname
+                return -1;
+            return 0;  //Sname = basketballTeam.Sname
         }
     }
 }
