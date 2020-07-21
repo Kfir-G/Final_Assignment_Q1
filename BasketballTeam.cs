@@ -9,8 +9,19 @@ namespace Final_Assignment_Q1
         //-----data fields----
         protected int maxPlayers;
         protected int activePlayers;
+        protected Stadium stadium; // the stadium where the soccer team plays
 
         //-----properties-----
+        public Stadium Stadium
+        {
+            get { return stadium; }
+            set
+            {
+                if (value == null)
+                    throw new ArgumentNullException("Null stadium Value is not allowed");
+                stadium = value;
+            }
+        }
         public int MaxPlayers
         {
             get { return maxPlayers; }
@@ -34,25 +45,28 @@ namespace Final_Assignment_Q1
 
         //-----methods-----
         //constructors:
-        public BasketballTeam (string name, DateTime established, int maxPlayers, int activePlayers): base (name, established)
+        public BasketballTeam (string name, DateTime established, int maxPlayers, int activePlayers,Stadium stadium): base (name, established)
         {
             MaxPlayers = maxPlayers;
             ActivePlayers = activePlayers;
+            Stadium = stadium;
         }
-        public BasketballTeam(string name, DateTime established) : base(name, established)
+        public BasketballTeam(string name, DateTime established, Stadium stadium) : base(name, established)
         {
             MaxPlayers = 20 ; // default value
             ActivePlayers = 0; //default value
+            Stadium = stadium;
         }
-        public BasketballTeam(int activePlayers ,string name, DateTime established) : base(name, established)
+        public BasketballTeam(int activePlayers ,string name, DateTime established, Stadium stadium) : base(name, established)
         {
             MaxPlayers = 20; // default value
-            ActivePlayers = activePlayers; 
+            ActivePlayers = activePlayers;
+            Stadium = stadium;
         }
             //
         public override string systemPurpose()
         {
-           return base.ToString()+ "max player:"+ maxPlayers+"active players:"+activePlayers;
+           return base.ToString()+ "max player:"+ maxPlayers+"active players:"+activePlayers+"stadium name where they play "+stadium.StadiumName+"number of seats"+stadium.Seats;
         }
 
         //-----interface----

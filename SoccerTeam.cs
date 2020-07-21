@@ -8,7 +8,7 @@ namespace Final_Assignment_Q1
     {
         //----data fields----
         protected string coachName; //the name of the coach
-        protected string sponsorship; // the sponsoship of the team
+        protected string sponsorship; // the sponsoship of the team 
 
         //-----properties---
         public string CoachName
@@ -39,7 +39,7 @@ namespace Final_Assignment_Q1
             CoachName = couchName;
             Sponsorship = sponsorship;
         }
-        public SoccerTeam(string name, DateTime established): base(name, established)
+        public SoccerTeam(string name, DateTime established) : base(name, established)
         {
             CoachName = "Not named yet"; // default value
             Sponsorship = "Not named yet"; // default value
@@ -56,7 +56,7 @@ namespace Final_Assignment_Q1
         }
 
         //-----interface----
-        public int CompareTo(object obj) //sort by number of active players
+        public int CompareTo(object obj) //sort by coach name
         {
             if (!(obj is SoccerTeam))
                 throw new Exception("Object is not a basketball team, Can not compare !");
