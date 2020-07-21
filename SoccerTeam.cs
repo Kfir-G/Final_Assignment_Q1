@@ -59,7 +59,7 @@ namespace Final_Assignment_Q1
         public int CompareTo(object obj) //sort by coach name
         {
             if (!(obj is SoccerTeam))
-                throw new Exception("Object is not a basketball team, Can not compare !");
+                throw new Exception("Object is not a soccer team, Can not compare !");
 
             int result = String.Compare(((SoccerTeam)obj).coachName, coachName);
             if (result < 0) // coachName > SoccerTeam.coachName

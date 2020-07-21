@@ -25,16 +25,18 @@ namespace Final_Assignment_Q1
 
         //-----methods-----
         //constructors:
-        public YouthSoccerTeam(string name, DateTime established, string couchName, string sponsorship, int underAge, Stack<int> stack)
+        public YouthSoccerTeam(string name, DateTime established, string couchName, string sponsorship, int underAge)
             :base(name, established,couchName,sponsorship)
         {
+            Stack<int> stack = new Stack<int>();
             UnderAge = underAge;
             for (int i = 99; i >= 0; i--) //pushing jersey numbers
                 stack.Push(i);
         }
-        public YouthSoccerTeam(string name, DateTime established, string couchName, string sponsorship, Stack<int> stack)
+        public YouthSoccerTeam(string name, DateTime established, string couchName, string sponsorship)
            : base(name, established, couchName, sponsorship)
         {
+            Stack<int> stack = new Stack<int>();
             UnderAge = 0; //default value
             for (int i = 99; i >= 0; i--) //pushing jersey numbers
                 stack.Push(i);

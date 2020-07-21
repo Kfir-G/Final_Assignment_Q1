@@ -11,6 +11,7 @@ namespace Final_Assignment_Q1
         DateTime established;
         public BasketballTeam[] basketballTeams;
         public SoccerTeam[] soccerTeams;
+        public YouthSoccerTeam[] youthSoccerTeams;
         public Stadium[] stadiums;
 
         //-----properties-----
@@ -26,6 +27,7 @@ namespace Final_Assignment_Q1
             // 10 is default size
             basketballTeams = new BasketballTeam[10];
             soccerTeams = new SoccerTeam[10];
+            youthSoccerTeams = new YouthSoccerTeam[10];
             stadiums = new Stadium[10];
         }
         public Service (int size, DateTime dateTime, string name)
@@ -34,6 +36,7 @@ namespace Final_Assignment_Q1
             Established = dateTime;
             basketballTeams = new BasketballTeam[size];
             soccerTeams = new SoccerTeam[size];
+            youthSoccerTeams = new YouthSoccerTeam[size];
             stadiums = new Stadium[size];
         }
         public Service(int sizeBasketballTeams, int sizeSoccerTeams, int sizeStadiums, DateTime dateTime, string name)
@@ -42,6 +45,7 @@ namespace Final_Assignment_Q1
             Established = dateTime;
             basketballTeams = new BasketballTeam[sizeBasketballTeams];
             soccerTeams = new SoccerTeam[sizeSoccerTeams];
+            youthSoccerTeams = new YouthSoccerTeam[sizeSoccerTeams];
             stadiums = new Stadium[sizeStadiums];
         }
             //
@@ -61,11 +65,20 @@ namespace Final_Assignment_Q1
             for (int i = 0; i < stadiums.Length; i++)
                 Console.WriteLine("{0}", stadiums[i].systemPurpose());
         }
+        public void printYouthSoccerTeams(YouthSoccerTeam [] youthSoccerTeams)
+        {
+            for (int i=0; i< youthSoccerTeams.Length; i++)
+            {
+                if(youthSoccerTeams[i].UnderAge != 0)
+                    Console.WriteLine("{0}", youthSoccerTeams[i].systemPurpose());
+            }
+        }
         public void printService(Service service)
         {
             Console.WriteLine("The name of the group{0} and established in ", teamName, established.ToString());
             printBasketBallTeams(service.basketballTeams);
             printSoccerTeams(service.soccerTeams);
+            printYouthSoccerTeams(service.youthSoccerTeams);
             printStadiums(service.stadiums);
         }
             //
@@ -93,7 +106,62 @@ namespace Final_Assignment_Q1
             string couchName = Console.ReadLine();
             Console.WriteLine("Enter the sponsership on the jersey");
             string sponsership = Console.ReadLine();
-
+            soccerTeams[idx] = new SoccerTeam(teamName, established, couchName, sponsership);
+            Console.WriteLine("The team have a youth team? true/flase");
+            bool youthTeam = bool.Parse(Console.ReadLine());
+            if (youthTeam)
+                addYouthSoccerTeam(idx, couchName , sponsership);
+        }
+        public void addYouthSoccerTeam(int idx, string couchName, string sponsership)
+        {
+            Console.WriteLine("Enter the under age (limit)");
+            int underAge = int.Parse(Console.ReadLine());
+            youthSoccerTeams[idx] = new YouthSoccerTeam(teamName, established, couchName, sponsership, underAge);
+        }
+            //
+        //deletes:
+        public void deleteBasketballTeam(int idx)
+        {
+            deleteStadium(idx);
+            if (idx == basketballTeams.Length - 1)
+            {
+                basketballTeams[idx] = null;
+                return;
+            }
+            for (int i = idx; i < basketballTeams.Length - 1; i++)
+                basketballTeams[i] = basketballTeams[i + 1];
+            basketballTeams[basketballTeams.Length - 1] = null; // the last
+        }
+        public void deleteStadium(int idx)
+        {
+            if (idx == stadiums.Length - 1) //if it is the last
+            {
+                stadiums[idx] = null;
+                return;
+            }
+            for(int i= idx; i<stadiums.Length-1; i++)
+                stadiums[i] = stadiums[i + 1];
+            stadiums[stadiums.Length - 1] = null; //the last
+        }
+        public void deleteSoccerTeam(int idx)
+        {
+            deleteYouthSoccerTeam(idx);
+            if(idx == soccerTeams.Length-1)
+            {
+                soccerTeams[idx] = null;
+                return;
+            }
+            for (int i = idx; i < soccerTeams.Length - 1; i++)
+                soccerTeams[i] = soccerTeams[i + 1];
+            soccerTeams[soccerTeams.Length - 1] = null; // the last
+        }
+        public void deleteYouthSoccerTeam(int idx)
+        {
+            if (idx == youthSoccerTeams.Length - 1)
+                youthSoccerTeams[idx] = null;
+            for (int i = idx; i < youthSoccerTeams.Length - 1; i++)
+                youthSoccerTeams[i] = youthSoccerTeams[i + 1];
+            youthSoccerTeams[youthSoccerTeams.Length - 1] = null;
         }
     }
 }
