@@ -6,11 +6,18 @@ namespace Final_Assignment_Q1
     {
         static void Main(string[] args)
         {
-            int idxBasketBallTeam = 0, idxSoccerTeam = 0, choiceTemp;
-            bool temp = true;
+            int idxBasketBallTeam = 0, idxSoccerTeam = 0, choiceTemp, size = 1;
+            bool temp = true, checkSize = false;
 
-            Console.WriteLine("Enter the amount of the teams");
-            int size = int.Parse(Console.ReadLine());
+            while (!checkSize)
+            {
+                Console.WriteLine("Enter the amount of the teams");
+                size = int.Parse(Console.ReadLine());
+                if (size > 0)
+                    checkSize = true;
+                else
+                    Console.WriteLine("Worng input try again");
+            }
             Service service = new Service(size);
 
             while (temp)
@@ -41,6 +48,8 @@ namespace Final_Assignment_Q1
                             service.addSoccerTeam(idxSoccerTeam);
                             idxSoccerTeam++;
                         }
+                        if(choiceTemp != 7 && choiceTemp != 8)
+                            Console.WriteLine("Worng input");
                         break;
                     case 5:
                         Console.WriteLine("Bye Bye....");

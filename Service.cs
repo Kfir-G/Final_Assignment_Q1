@@ -84,6 +84,7 @@ namespace Final_Assignment_Q1
                 DateTime established = new DateTime(year, month, day);
                 Console.WriteLine("Enter the name of the stadium where they play");
                 string stadiumName = Console.ReadLine();
+                Console.WriteLine("Enter the number of the seats in the stadium");
                 int seatStadium =int.Parse(Console.ReadLine());
                 Stadium stadiumNew = new Stadium(stadiumName, seatStadium);
                 basketballTeams[idx] = new BasketballTeam(teamName, established, maxPlayers, activePlayer, stadiumNew);
