@@ -7,42 +7,32 @@ namespace Final_Assignment_Q1
     class Service
     {
         //----data fields----
-        public string teamName;
-        public DateTime established;
         public BasketballTeam[] basketballTeams;
         public SoccerTeam[] soccerTeams;
         public YouthSoccerTeam[] youthSoccerTeams;
         public Stadium[] stadiums;
 
         //-----properties-----
-        public DateTime Established { get => established; set => established = value; }
-        public string TeamName { get => teamName; set => teamName = value; }
 
         //------methods------
         //constructors:
         public Service()
         {
-            TeamName = "Not named yet"; //default value
-            Established = DateTime.Now; //default value
             // 10 is default size
             basketballTeams = new BasketballTeam[10];
             soccerTeams = new SoccerTeam[10];
             youthSoccerTeams = new YouthSoccerTeam[10];
             stadiums = new Stadium[10];
         }
-        public Service (int size, DateTime dateTime, string name)
+        public Service (int size)
         {
-            TeamName = name;
-            Established = dateTime;
             basketballTeams = new BasketballTeam[size];
             soccerTeams = new SoccerTeam[size];
             youthSoccerTeams = new YouthSoccerTeam[size];
             stadiums = new Stadium[size];
         }
-        public Service(int sizeBasketballTeams, int sizeSoccerTeams, int sizeStadiums, DateTime dateTime, string name)
+        public Service(int sizeBasketballTeams, int sizeSoccerTeams, int sizeStadiums)
         {
-            TeamName = name;
-            Established = dateTime;
             basketballTeams = new BasketballTeam[sizeBasketballTeams];
             soccerTeams = new SoccerTeam[sizeSoccerTeams];
             youthSoccerTeams = new YouthSoccerTeam[sizeSoccerTeams];
@@ -75,7 +65,6 @@ namespace Final_Assignment_Q1
         }
         public void printService(Service service)
         {
-            Console.WriteLine("The name of the group{0} and established in ", teamName, established.ToString());
             printBasketBallTeams(service.basketballTeams);
             printSoccerTeams(service.soccerTeams);
             printYouthSoccerTeams(service.youthSoccerTeams);
@@ -89,6 +78,13 @@ namespace Final_Assignment_Q1
             string stadiumName = Console.ReadLine();
             Console.WriteLine("Enter the number of the seats in the stadium");
             int seats = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter the name of the group");
+            string teamName = Console.ReadLine();
+            Console.WriteLine("Enter the year of established after that the month and then the day");
+            int year = int.Parse(Console.ReadLine());
+            int month = int.Parse(Console.ReadLine());
+            int day = int.Parse(Console.ReadLine());
+            DateTime established = new DateTime(year, month, day);
             stadiums[idx] = new Stadium(teamName, established, stadiumName, seats);
         }
         public void addBasketballTeam(int idx)
@@ -98,6 +94,13 @@ namespace Final_Assignment_Q1
             Console.WriteLine("Enter the number of active player");
             int activePlayer = int.Parse(Console.ReadLine());
             addStadium(idx);
+            Console.WriteLine("Enter the name of the group");
+            string teamName = Console.ReadLine();
+            Console.WriteLine("Enter the year of established after that the month and then the day");
+            int year = int.Parse(Console.ReadLine());
+            int month = int.Parse(Console.ReadLine());
+            int day = int.Parse(Console.ReadLine());
+            DateTime established = new DateTime(year, month, day);
             basketballTeams[idx] = new BasketballTeam(teamName, established, maxPlayers, activePlayer, stadiums[idx]);
         }
         public void addSoccerTeam(int idx)
@@ -106,13 +109,20 @@ namespace Final_Assignment_Q1
             string couchName = Console.ReadLine();
             Console.WriteLine("Enter the sponsership on the jersey");
             string sponsership = Console.ReadLine();
+            Console.WriteLine("Enter the name of the group");
+            string teamName = Console.ReadLine();
+            Console.WriteLine("Enter the year of established after that the month and then the day");
+            int year = int.Parse(Console.ReadLine());
+            int month = int.Parse(Console.ReadLine());
+            int day = int.Parse(Console.ReadLine());
+            DateTime established = new DateTime(year, month, day);
             soccerTeams[idx] = new SoccerTeam(teamName, established, couchName, sponsership);
             Console.WriteLine("The team have a youth team? true/flase");
             bool youthTeam = bool.Parse(Console.ReadLine());
             if (youthTeam)
-                addYouthSoccerTeam(idx, couchName , sponsership);
+                addYouthSoccerTeam(idx, couchName , sponsership,teamName, established);
         }
-        public void addYouthSoccerTeam(int idx, string couchName, string sponsership)
+        public void addYouthSoccerTeam(int idx, string couchName, string sponsership, string teamName, DateTime established)
         {
             Console.WriteLine("Enter the under age (limit)");
             int underAge = int.Parse(Console.ReadLine());
@@ -172,7 +182,34 @@ namespace Final_Assignment_Q1
                 if (String.Compare(name, basketballTeams[i].SName) == 0)
                     return i;
             }
-            return -1; //didnt found
+            return -1; //didnt find
+        }
+        public int searchStadium(string stadiumName)
+        {
+            for(int i=0; i<stadiums.Length; i++)
+            {
+                if (String.Compare(stadiumName, stadiums[i].SName) == 0)
+                    return i;
+            }
+            return -1; //didnt find
+        }
+        public int searchSoccerTeam(string name)
+        {
+            for(int i=0; i<soccerTeams.Length; i++)
+            {
+                if (String.Compare(name, soccerTeams[i].SName) == 0)
+                    return i;
+            }
+            return -1; //didnt find
+        }
+        public int searchYouthSoccerTeam(string name)
+        {
+            for(int i=0; i<youthSoccerTeams.Length; i++)
+            {
+                if (String.Compare(name, youthSoccerTeams[i].SName) == 0)
+                    return i;
+            }
+            return -1; //didnt find
         }
     }
 }
