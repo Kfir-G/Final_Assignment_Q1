@@ -52,7 +52,7 @@ namespace Final_Assignment_Q1
              //
         public override string systemPurpose()
         {
-            return base.ToString() + "name of the coach " + coachName + " name of the sponsorship " + sponsorship;
+            return base.ToString() + " name of the coach " + coachName + " name of the sponsorship " + sponsorship;
         }
 
         //-----interface----

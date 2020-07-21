@@ -64,7 +64,7 @@ namespace Final_Assignment_Q1
         public static void Delete(Service service)
         {
             Console.WriteLine("Enter the type of the object you want to delete");
-            Console.WriteLine("1- for basketball team\t2-for stadium\t3-for soccer team\t4-for youth soccer team" );
+            Console.WriteLine("1- for basketball team\t2-for soccer team" );
             int choice = int.Parse(Console.ReadLine());
             switch(choice)
             {
@@ -74,15 +74,7 @@ namespace Final_Assignment_Q1
                     break;
                 case 2:
                     Console.WriteLine("Enter the index");
-                    service.deleteStadium(int.Parse(Console.ReadLine()));
-                    break;
-                case 3:
-                    Console.WriteLine("Enter the index");
                     service.deleteSoccerTeam(int.Parse(Console.ReadLine()));
-                    break;
-                case 4:
-                    Console.WriteLine("Enter the index");
-                    service.deleteYouthSoccerTeam(int.Parse(Console.ReadLine()));
                     break;
                 default:
                     Console.WriteLine("Worng input");
@@ -91,7 +83,7 @@ namespace Final_Assignment_Q1
         }
         public static void CallForPrint(Service service)
         {
-            Console.WriteLine("Enter:for print\t1-Basketball teams\t2=Soccer teams\t3-Youth soccer team\t4-Stadiums\t5- ALL ");
+            Console.WriteLine("Enter:for print\t1-Basketball teams\t2=Soccer teams\t3-Youth soccer team\t4- ALL ");
             int choice = int.Parse(Console.ReadLine());
             switch(choice)
             {
@@ -102,12 +94,9 @@ namespace Final_Assignment_Q1
                     service.printSoccerTeams(service.soccerTeams);
                     break;
                 case 3:
-                    service.printYouthSoccerTeams(service.youthSoccerTeams);
+                    service.printYouthSoccerTeams(service.soccerTeams);
                     break;
                 case 4:
-                    service.printStadiums(service.stadiums);
-                    break;
-                case 5:
                     service.printService(service);
                     break;
                 default:
@@ -117,7 +106,7 @@ namespace Final_Assignment_Q1
         }
         public static void Searching(Service service)
         {
-            Console.WriteLine("Enter 7 for sreaching soccer team \t 8 to basketball team\t9 to stadium ");
+            Console.WriteLine("Enter 7 for sreaching soccer team \t 8 to basketball team\t9 to youth soccer team ");
             int choice = int.Parse(Console.ReadLine());
             switch(choice)
             {
@@ -130,8 +119,8 @@ namespace Final_Assignment_Q1
                     service.searchBasketballTeam(Console.ReadLine());
                     break;
                 case 9:
-                    Console.WriteLine("Enter the name of the stadium");
-                    service.searchStadium(Console.ReadLine());
+                    Console.WriteLine("Enter the name of the youth soccer team");
+                    service.searchYouthSoccerTeam(Console.ReadLine());
                     break;
                 default:
                     Console.WriteLine("Wornd Input");

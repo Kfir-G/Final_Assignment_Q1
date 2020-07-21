@@ -83,8 +83,10 @@ namespace Final_Assignment_Q1
                 int day = int.Parse(Console.ReadLine());
                 DateTime established = new DateTime(year, month, day);
                 Console.WriteLine("Enter the name of the stadium where they play");
-                string stadiumName = Console.ReadLine()
-                basketballTeams[idx] = new BasketballTeam(teamName, established, maxPlayers, activePlayer, stadiums[idx]);
+                string stadiumName = Console.ReadLine();
+                int seatStadium =int.Parse(Console.ReadLine());
+                Stadium stadiumNew = new Stadium(stadiumName, seatStadium);
+                basketballTeams[idx] = new BasketballTeam(teamName, established, maxPlayers, activePlayer, stadiumNew);
             }
             catch(Exception e1)
             {
@@ -106,28 +108,28 @@ namespace Final_Assignment_Q1
                 int month = int.Parse(Console.ReadLine());
                 int day = int.Parse(Console.ReadLine());
                 DateTime established = new DateTime(year, month, day);
-                soccerTeams[idx] = new SoccerTeam(teamName, established, couchName, sponsership);
-                Console.WriteLine("The team have a youth team? true/flase");
+                Console.WriteLine("The team is youth team? true/flase");
                 bool youthTeam = bool.Parse(Console.ReadLine());
                 if (youthTeam)
-                    addYouthSoccerTeam(idx, couchName, sponsership, teamName, established);
+                {
+                    Console.WriteLine("Enter the under age (limit)");
+                    int underAge = int.Parse(Console.ReadLine());
+                    soccerTeams[idx] = new YouthSoccerTeam(teamName, established, couchName, sponsership, underAge);
+                }
+                else
+                {
+                    soccerTeams[idx] = new SoccerTeam(teamName, established, couchName, sponsership);
+                }
             }
             catch( Exception e2)
             {
                 Console.WriteLine("Worng input "+ e2.Message);
             }
         }
-        public void addYouthSoccerTeam(int idx, string couchName, string sponsership, string teamName, DateTime established)
-        {
-            Console.WriteLine("Enter the under age (limit)");
-            int underAge = int.Parse(Console.ReadLine());
-            youthSoccerTeams[idx] = new YouthSoccerTeam(teamName, established, couchName, sponsership, underAge);
-        }
             //
         //deletes:
         public void deleteBasketballTeam(int idx)
         {
-            deleteStadium(idx);
             if (idx == basketballTeams.Length - 1)
             {
                 basketballTeams[idx] = null;
@@ -137,20 +139,8 @@ namespace Final_Assignment_Q1
                 basketballTeams[i] = basketballTeams[i + 1];
             basketballTeams[basketballTeams.Length - 1] = null; // the last
         }
-        public void deleteStadium(int idx)
-        {
-            if (idx == stadiums.Length - 1) //if it is the last
-            {
-                stadiums[idx] = null;
-                return;
-            }
-            for(int i= idx; i<stadiums.Length-1; i++)
-                stadiums[i] = stadiums[i + 1];
-            stadiums[stadiums.Length - 1] = null; //the last
-        }
         public void deleteSoccerTeam(int idx)
         {
-            deleteYouthSoccerTeam(idx);
             if(idx == soccerTeams.Length-1)
             {
                 soccerTeams[idx] = null;
@@ -160,53 +150,60 @@ namespace Final_Assignment_Q1
                 soccerTeams[i] = soccerTeams[i + 1];
             soccerTeams[soccerTeams.Length - 1] = null; // the last
         }
-        public void deleteYouthSoccerTeam(int idx)
-        {
-            if (idx == youthSoccerTeams.Length - 1)
-                youthSoccerTeams[idx] = null;
-            for (int i = idx; i < youthSoccerTeams.Length - 1; i++)
-                youthSoccerTeams[i] = youthSoccerTeams[i + 1];
-            youthSoccerTeams[youthSoccerTeams.Length - 1] = null;
-        }
             //
         //search:
-        public void searchBasketballTeam(string name) //search by name
+        public void searchBasketballTeam(string name) //search by the name of the basketball team
         {
             for(int i =0; i<basketballTeams.Length; i++)
             {
-                if (String.Compare(name, basketballTeams[i].SName) == 0)
+                if (basketballTeams[i] != null)
                 {
-                    Console.WriteLine("Found! index {0}", i);
-                    basketballTeams[i].systemPurpose();
-                    return;
+                    if (String.Compare(name, basketballTeams[i].SName) == 0)
+                    {
+                        Console.WriteLine("Found! index {0}", i);
+                        basketballTeams[i].systemPurpose();
+                        return;
+                    }
                 }
             }
             Console.WriteLine("Didn't find!");
             return ; //didnt find
         }
-        public void searchStadium(string stadiumName)
-        {
-            for(int i=0; i<stadiums.Length; i++)
-            {
-                if (String.Compare(stadiumName, stadiums[i].StadiumName) == 0)
-                {
-                    Console.WriteLine("Found! index {0}", i);
-                    Console.WriteLine("{0}" ,stadiums[i].ToString());
-                    return;
-                }
-            }
-            Console.WriteLine("Did not find!");
-            return; //didnt find
-        }
-        public void searchSoccerTeam(string name)
+        public void searchSoccerTeam(string name) //searching by the name of the soccer team
         {
             for(int i=0; i<soccerTeams.Length; i++)
             {
-                if (String.Compare(name, soccerTeams[i].SName) == 0)
+                if (soccerTeams[i] != null)
                 {
-                    Console.WriteLine("Found! index {0}", i);
-                    soccerTeams[i].systemPurpose();
-                    return;
+                    if (String.Compare(name, soccerTeams[i].SName) == 0)
+                    {
+                        if (!(soccerTeams[i] is YouthSoccerTeam))
+                        {
+                            Console.WriteLine("Found! index {0}", i);
+                            soccerTeams[i].systemPurpose();
+                        }
+                        return;
+                    }
+                }
+            }
+            Console.WriteLine("Didn't find");
+            return; //didnt find
+        }
+        public void searchYouthSoccerTeam(string name)
+        {
+            for(int i = 0; i < soccerTeams.Length; i++)
+            {
+                if (soccerTeams[i] != null)
+                {
+                    if (String.Compare(name, soccerTeams[i].SName) == 0)
+                    {
+                        if (soccerTeams[i] is YouthSoccerTeam)
+                        {
+                            Console.WriteLine("Found! index {0}", i);
+                            ((YouthSoccerTeam)soccerTeams[i]).systemPurpose();
+                        }
+                        return;
+                    }
                 }
             }
             Console.WriteLine("Didn't find");

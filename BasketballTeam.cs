@@ -66,7 +66,7 @@ namespace Final_Assignment_Q1
             //
         public override string systemPurpose()
         {
-           return base.ToString()+ "max player:"+ maxPlayers+"active players:"+activePlayers+"stadium name where they play "+stadium.StadiumName+"number of seats"+stadium.Seats;
+           return base.ToString()+ " max player:"+ maxPlayers+" active players:"+activePlayers+ stadium.ToString();
         }
 
         //-----interface----

@@ -52,7 +52,7 @@ namespace Final_Assignment_Q1
             //
         public override string ToString()
         {
-            return "The name of the stadium " + stadiumName + "number of seats" + seats;
+            return " The name of the stadium " + stadiumName + " number of seats" + seats;
         }
 
         //-----interface-----
