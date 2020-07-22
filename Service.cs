@@ -71,7 +71,7 @@ namespace Final_Assignment_Q1
         {
             try
             {
-                basketballTeams[idx] = new BasketballTeam(name, dateTime, maxPlayers, activePlayers, stadium;
+                basketballTeams[idx] = new BasketballTeam(name, dateTime, maxPlayers, activePlayers, stadium);
             }
             catch(Exception e1)
             {

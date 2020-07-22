@@ -6,9 +6,7 @@ namespace Final_Assignment_Q1
     {
         static void Main(string[] args)
         {
-            int size = 10;
-            int idxBasketBallTeam = 0, idxSoccerTeam = 0, choiceTemp;
-            bool temp = true;
+            int idxBasketBallTeam = 0, idxSoccerTeam = 0, size = 10;
 
             Service service = new Service(size);
 
@@ -24,58 +22,17 @@ namespace Final_Assignment_Q1
             idxSoccerTeam++;
 
             DateTime dateTime3 = new DateTime(1930, 3, 3);
-            service.addSoccerTeam(idxBasketBallTeam, "Dortmund", dateTime3, "Klopp", "Puma",true, 18);
+            service.addSoccerTeam(idxBasketBallTeam, "Dortmund", dateTime3, "Klopp", "Puma", true, 18);
             idxSoccerTeam++;
 
-            while (temp)
-            {
-                Menu();
-                int choice = int.Parse(Console.ReadLine());
-                switch (choice)
-                {
-                    case 1:
-                        CallForPrint(service);
-                        break;
-                    case 2:
-                        Searching(service);
-                        break;
-                    case 3:
-                        Delete(service);
-                        break;
-                    case 4:
-                        Console.WriteLine("Enter 7 to add a Basketball team\t8 to add a Soccer team");
-                        choiceTemp = int.Parse(Console.ReadLine());
-                        if (choiceTemp == 7)
-                        {
-                            service.addBasketballTeam(idxBasketBallTeam);
-                            idxBasketBallTeam++;
-                        }
-                        if (choiceTemp == 8)
-                        {
-                            service.addSoccerTeam(idxSoccerTeam);
-                            idxSoccerTeam++;
-                        }
-                        if(choiceTemp != 7 && choiceTemp != 8)
-                            Console.WriteLine("Worng input");
-                        break;
-                    case 5:
-                        Console.WriteLine("Bye Bye....");
-                        temp = false;
-                        break;
-                    default:
-                        Console.WriteLine("Worng input");
-                        break;
-                }
-            }
-        }
-        public static void Menu()
-        {
-            Console.WriteLine("Enter:");
-            Console.WriteLine("1\tto Print");
-            Console.WriteLine("2\tto Search");
-            Console.WriteLine("3\tto Delete");
-            Console.WriteLine("4\tto Add item");
-            Console.WriteLine("5\tto Exit");
+            CallForPrint(service);
+
+            Searching(service);
+
+            Delete(service);
+
+            CallForPrint(service);
+
         }
         public static void Delete(Service service)
         {
